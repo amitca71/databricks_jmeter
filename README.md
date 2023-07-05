@@ -1,5 +1,15 @@
-# databricks_jmeter
-jmeter instructions
+# databricks_jmeter   
+build:    
+docker build -t databricks-jmeter-docker:latest .   
+execute:   
+prerequisite: jmx scenario under scenarios dir (can change the xxx on the existing file for example)   
+
+docker run -it --rm -v $(pwd)/output:/results -v $(pwd)/scenarios:/opt/apache-jmeter-5.5/scenarios databricks-jmeter-docker:latest run.sh   
+
+
+
+
+jmeter create scenario instructions 
 
 Jmeter for databricks sql
 
