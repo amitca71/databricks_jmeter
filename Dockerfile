@@ -43,7 +43,8 @@ RUN mv DatabricksJDBC42.jar /opt/apache-jmeter-${JMETER_VERSION}/lib/
 #COPY databricks_tets_plan.jmx /opt/apache-jmeter-${JMETER_VERSION}/scenario
 # TODO: plugins (later)
 # && unzip -oq "/tmp/dependencies/JMeterPlugins-*.zip" -d $JMETER_HOME
-
+RUN ls /tmp
+ARG CACHEBUST=0
 ADD  run.sh ${JMETER_HOME}/bin/run.sh
 #RUN ["chmod", "+x", "/opt/apache-jmeter-${JMETER_VERSION}/run.sh"]
 # Set global PATH such that "jmeter" command is found
