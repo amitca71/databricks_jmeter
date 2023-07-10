@@ -1,35 +1,29 @@
 # databricks_jmeter   
-# inspired by https://github.com/manojkumar542/Jmeter-docker.git and https://github.com/Rbillon59/jmeter-docker-compose-starterkit     
-
-
-build:    
-docker build -t databricks-jmeter-docker:latest .   
-execute:   
-prerequisite: jmx scenario under scenarios dir (can change the xxx on the existing file for example)   
-
- 
-export host="dbc-xxxx-xxx.cloud.databricks.com"
-export PWD="dapixxxxxx"
-export warehouse="dcxxxxxxxxx6"
-docker run -it --rm -v $(pwd)/output:/results -v $(pwd)/scenario:/opt/apache-jmeter-5.5/scenario databricks-jmeter-docker:latest jmeter -n -t  scenario/databricks_argument_plan_influx.jmx -l /jmeter.jtl -Jhost=${host} -JPWD=${PWD} -Jwarehouse=${warehouse} 
-
-
-source .env && docker-compose up -d
-
-localhost:300000 (admin/admin)
-
-jmeter create scenario instructions 
-
-Jmeter for databricks sql
-
-pre requisite: 
+inspired by https://github.com/manojkumar542/Jmeter-docker.git and https://github.com/Rbillon59/jmeter-docker-compose-starterkit     
+This implementation suppose to work as is, with Databricks SQL configuration set (host, PWD and warehouse id) on .env file    
+its performing basic sql test for "show tables".    
+the jmeter jmx file that is executes is under scenario/databricks_argument_plan_influx.jmx.   
+the file can be edited to your oun query, or be used as a baseline for the GUI   
+#### pre requisite: 
 1. Databricks workspace with:
 - SQL Warehouse installed
-- generated private token
+- generated private token (PWD)   
+2. cp .env.sample .env
+  edit the .env with your sql warehouse:    
+  - host ("dbc-xxxx-xxx.cloud.databricks.com")      
+  - PWD ("dapixxxxxx")      
+  - warehouse ("dcxxxxxxxxx6")     
 
+### execution:
+source .env && docker-compose up -d
 
+### results on grafana:     
+localhost:300000 (admin/admin)
 
-1. install latest jmeter https://jmeter.apache.org/download_jmeter.cgi
+####
+jmeter edit scenario by GUI instructions (its recomended to use ls scenario/databricks_argument_plan_influx.jmx as base line and edit it)      
+
+1. install jmeter https://jmeter.apache.org/download_jmeter.cgi
 2. download databricks client lib from: https://www.databricks.com/spark/jdbc-drivers-archive
 3. copy the driver  (e.g. DatabricksJDBC42.jar) to lib/ext
 4. boot (./bin/jmeter)
