@@ -1,13 +1,22 @@
 # databricks_jmeter   
+# inspired by https://github.com/manojkumar542/Jmeter-docker.git and https://github.com/Rbillon59/jmeter-docker-compose-starterkit     
+
+
 build:    
 docker build -t databricks-jmeter-docker:latest .   
 execute:   
 prerequisite: jmx scenario under scenarios dir (can change the xxx on the existing file for example)   
 
-docker run -it --rm -v $(pwd)/output:/results -v $(pwd)/scenarios:/opt/apache-jmeter-5.5/scenarios databricks-jmeter-docker:latest run.sh   
+ 
+export host="dbc-xxxx-xxx.cloud.databricks.com"
+export PWD="dapixxxxxx"
+export warehouse="dcxxxxxxxxx6"
+docker run -it --rm -v $(pwd)/output:/results -v $(pwd)/scenario:/opt/apache-jmeter-5.5/scenario databricks-jmeter-docker:latest jmeter -n -t  scenario/databricks_argument_plan_influx.jmx -l /jmeter.jtl -Jhost=${host} -JPWD=${PWD} -Jwarehouse=${warehouse} 
 
 
+source .env && docker-compose up -d
 
+localhost:300000 (admin/admin)
 
 jmeter create scenario instructions 
 
