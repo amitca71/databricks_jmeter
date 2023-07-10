@@ -1,9 +1,9 @@
 # databricks_jmeter   
-inspired by https://github.com/manojkumar542/Jmeter-docker.git and https://github.com/Rbillon59/jmeter-docker-compose-starterkit     
-This implementation suppose to work as is, with Databricks SQL configuration set (host, PWD and warehouse id) on .env file    
-its performing basic sql test for "show tables".    
-the jmeter jmx file that is executes is under scenario/databricks_argument_plan_influx.jmx.   
-the file can be edited to your oun query, or be used as a baseline for the GUI   
+(inspired by https://github.com/manojkumar542/Jmeter-docker.git and https://github.com/Rbillon59/jmeter-docker-compose-starterkit)     
+This implementation works as is, with minor pre requisite of Databricks SQL configuration (host, PWD and warehouse id) set on .env file    
+its performing basic sql test for "show tables". and results apears on grafana, using influxDB.    
+the jmeter test configuration is stored under scenario/databricks_argument_plan_influx.jmx.   
+the file can be edited to your oun query, or be used as a baseline for the GUI configuration   
 #### pre requisite: 
 1. Databricks workspace with:
 - SQL Warehouse installed
