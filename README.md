@@ -20,10 +20,10 @@ source .env && docker-compose up -d
 ### results on grafana:     
 localhost:300000 (admin/admin)
 
-####
+### edit jmx scenario instructions (advanced- not needed for execution)    
 jmeter edit scenario by GUI instructions (its recomended to use ls scenario/databricks_argument_plan_influx.jmx as base line and edit it)      
 
-1. install jmeter https://jmeter.apache.org/download_jmeter.cgi
+1. install jmeter 5.5 https://jmeter.apache.org/download_jmeter.cgi
 2. download databricks client lib from: https://www.databricks.com/spark/jdbc-drivers-archive
 3. copy the driver  (e.g. DatabricksJDBC42.jar) to lib/ext
 4. boot (./bin/jmeter)
